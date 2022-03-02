@@ -15,18 +15,34 @@ const searchPhone = () =>{
     else{
  //    load data 
     const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`
-     fetch(url)
+    // console.log(url);
+    fetch(url)
      .then(res => res.json())
-    //  .then(data => displaySearchResult(data.data))
      .then(data => displaySearchResult(data.data))
     }
+
  }
 const displaySearchResult = data =>{
+        if(data.length == 0){
+                console.log(`There is no phone`);
+                const noPhone = document.getElementById('phone-details');
+                noPhone.textContent = '';
+                const div = document.createElement('div');
+                div.innerHTML = `
+                    <h1 class="text-center text-success">There is no Phone Name You have write!</h1>
+                `
+                noPhone.appendChild(div);
+
+            }
     // console.log(data.slice(1, 20));
+ else{
+    const noPhoneMessage = document.getElementById('phone-details');
+    noPhoneMessage.textContent = '';
     const searchResult = document.getElementById('search-result');
     // Searaching Result clear
     searchResult.textContent = '';
-    //  20 phones limit
+
+    //  Show 20 phones
     data.slice(0, 20).forEach(data => {
         // console.log(data);
         // data.slice(1, 20);
@@ -43,7 +59,9 @@ const displaySearchResult = data =>{
         </div>
         `
         searchResult.appendChild(div);
-    });
+    
+        });
+    }
 }
 //===================================
 // == to get indivitual information of Phone
