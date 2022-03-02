@@ -24,7 +24,7 @@ const searchPhone = () =>{
  }
 const displaySearchResult = data =>{
         if(data.length == 0){
-                console.log(`There is no phone`);
+                // console.log(`There is no phone`);
                 const noPhone = document.getElementById('phone-details');
                 noPhone.textContent = '';
                 const div = document.createElement('div');
@@ -41,7 +41,6 @@ const displaySearchResult = data =>{
     const searchResult = document.getElementById('search-result');
     // Searaching Result clear
     searchResult.textContent = '';
-
     //  Show 20 phones
     data.slice(0, 20).forEach(data => {
         // console.log(data);
@@ -69,7 +68,6 @@ const loadPhoneDetails = id => {
     // console.log(id);
     // load phone data
     const url = `https://openapi.programming-hero.com/api/phone/${id}`
-    console.log(url);
     fetch(url)
         .then(res => res.json() )
         .then(data => displayPhoneDetail(data.data))
@@ -85,12 +83,17 @@ const displayPhoneDetail = phone => {
         <img src="${phone.image}" class="card-img-top w-25 mx-auto mt-2" alt="...">
         <div class="card-body w-35 mx-auto border border-info rounded my-5">
             <h5 class="card-title">Phone Name: ${phone.name}</h5>
-            <p class="card-title">Release Date: ${phone.releaseDate}</p>
+            <p id="releaseDate" class="card-title">Release Date: ${phone.releaseDate}</p>
             <p class="card-title">Storage: ${phone.mainFeatures.storage}</p>
-            <p class="card-title">Storage: ${phone.mainFeatures.memory}</p>
+            <p class="card-title">Memory: ${phone.mainFeatures.memory}</p>
             <p class="card-title">Sensors: ${phone.mainFeatures.sensors}</p>
             <p class="card-title">Others: ${phone.others}</p>
         </div>
     `
     phoneDetails.appendChild(div);
+    if(phone.releaseDate == ''){
+        console.log(`There is no Release Date`);
+        const releaseDate =document.getElementById('releaseDate');
+        releaseDate.innerText = 'Release Date: There is no Release Date!';       
+    }
 }
