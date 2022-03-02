@@ -77,13 +77,12 @@ const displayPhoneDetail = phone => {
     div.classList.add('card');
     div.innerHTML = `
         <img src="${phone.image}" class="card-img-top w-25 mx-auto mt-2" alt="...">
-        <div class="card-body w-35 mx-auto border border-info rounded my-5">
+        <div class="card-body w-35 mx-auto border border-info rounded my-5" style="background: bisque">
             <h5 class="card-title">Phone Name: ${phone.name}</h5>
             <p id="releaseDate" class="card-title">Release Date: ${phone.releaseDate}</p>
             <p class="card-title">Storage: ${phone.mainFeatures.storage}</p>
             <p class="card-title">Memory: ${phone.mainFeatures.memory}</p>
             <p class="card-title">Sensors: ${phone.mainFeatures.sensors}</p>
-            <p class="card-title">Others: ${phone.others}</p>
         </div>
     `
     phoneDetails.appendChild(div);    
