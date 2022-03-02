@@ -17,17 +17,19 @@ const searchPhone = () =>{
     const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`
      fetch(url)
      .then(res => res.json())
+    //  .then(data => displaySearchResult(data.data))
      .then(data => displaySearchResult(data.data))
     }
  }
 const displaySearchResult = data =>{
-    // console.log(data);
+    // console.log(data.slice(1, 20));
     const searchResult = document.getElementById('search-result');
     // Searaching Result clear
     searchResult.textContent = '';
-    data.forEach(data => {
+    //  20 phones limit
+    data.slice(0, 20).forEach(data => {
         // console.log(data);
-        
+        // data.slice(1, 20);
         const div = document.createElement('div');
         div.classList.add('col');
         div.innerHTML = `
@@ -43,8 +45,8 @@ const displaySearchResult = data =>{
         searchResult.appendChild(div);
     });
 }
-//////////////////////////////////
-// to get indivitual information of Phone
+//===================================
+// == to get indivitual information of Phone
 const loadPhoneDetails = id => {
     // console.log(id);
     // load phone data
@@ -69,7 +71,7 @@ const displayPhoneDetail = phone => {
             <p class="card-title">Storage: ${phone.mainFeatures.storage}</p>
             <p class="card-title">Storage: ${phone.mainFeatures.memory}</p>
             <p class="card-title">Sensors: ${phone.mainFeatures.sensors}</p>
-            <p class="card-title">Others: ${phone.mainFeatures.others}</p>
+            <p class="card-title">Others: ${phone.others}</p>
         </div>
     `
     phoneDetails.appendChild(div);
