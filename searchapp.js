@@ -20,7 +20,6 @@ const searchPhone = () =>{
      .then(res => res.json())
      .then(data => displaySearchResult(data.data))
     }
-
  }
 const displaySearchResult = data =>{
         if(data.length == 0){
@@ -32,7 +31,6 @@ const displaySearchResult = data =>{
                     <h1 class="text-center text-success">There is no Phone Name You have write!</h1>
                 `
                 noPhone.appendChild(div);
-
             }
     // console.log(data.slice(1, 20));
  else{
@@ -41,7 +39,7 @@ const displaySearchResult = data =>{
     const searchResult = document.getElementById('search-result');
     // Searaching Result clear
     searchResult.textContent = '';
-    //  Show 20 phones
+    //  Show maximum 20 phones
     data.slice(0, 20).forEach(data => {
         // console.log(data);
         // data.slice(1, 20);
@@ -58,7 +56,6 @@ const displaySearchResult = data =>{
         </div>
         `
         searchResult.appendChild(div);
-    
         });
     }
 }
@@ -72,9 +69,8 @@ const loadPhoneDetails = id => {
         .then(res => res.json() )
         .then(data => displayPhoneDetail(data.data))
 }
-
 const displayPhoneDetail = phone => {
-    console.log(phone);
+    // console.log(phone);
     const phoneDetails = document.getElementById('phone-details');
     phoneDetails.textContent = '';
     const div = document.createElement('div');
@@ -90,9 +86,9 @@ const displayPhoneDetail = phone => {
             <p class="card-title">Others: ${phone.others}</p>
         </div>
     `
-    phoneDetails.appendChild(div);
+    phoneDetails.appendChild(div);    
     if(phone.releaseDate == ''){
-        console.log(`There is no Release Date`);
+        // console.log(`There is no Release Date`);
         const releaseDate =document.getElementById('releaseDate');
         releaseDate.innerText = 'Release Date: There is no Release Date!';       
     }
