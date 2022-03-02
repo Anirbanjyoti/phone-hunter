@@ -28,7 +28,7 @@ const displaySearchResult = data =>{
                 noPhone.textContent = '';
                 const div = document.createElement('div');
                 div.innerHTML = `
-                    <h1 class="text-center text-success">There is no Phone Name You have write!</h1>
+                    <h1 class="text-center text-success">There is no Phone Found You have Searched!</h1>
                 `
                 noPhone.appendChild(div);
             }
